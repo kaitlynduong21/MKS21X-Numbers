@@ -1,22 +1,32 @@
 public class RealNumber{
 
-  private double num;
+  double value;
 
-  public RealNumber () {
-    //constructor default method
+  public RealNumber(double v){
+    value = v;
   }
 
-  public RealNumber(double x) {
-    //constructor method
+  public double add(RealNumber other){
+    return this.getValue() + other.getValue();
   }
 
-  public double getValue() {
-    //accessor method
+  public double multiply(RealNumber other){
+    return this.getValue() * other.getValue();
   }
 
-  public String toString() {
-    //toString method
+  public double divide(RealNumber other){
+    return this.getValue() / other.getValue();
   }
 
-  public double compareTo(RealNumber a, RealNumber b)
+  public double subtract(RealNumber other){
+    return this.getValue() - other.getValue();
+  }
+
+  public double getValue(){
+    return value;
+  }
+
+  public String toString(){
+    return ""+value;
+  }
 }
