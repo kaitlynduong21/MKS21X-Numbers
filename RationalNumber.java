@@ -2,23 +2,14 @@ public class RationalNumber extends RealNumber{
 
   private int numerator, denominator;
 
-   private static int gcd(int a, int b){
-     if (a > b) {
-       while (b != 0) {
-         int num = b;
-         b = b % a;
-         a = num;
-       }
-       return a;
-     } else {
-       while (a != 0) {
-       int num = a;
-       a = a % b;
-       b = num;
-     }
-     return b;
-   }
- }
+  private static int gcd(int a, int b){
+    while (b != 0) {
+        int newa = b;
+        b = a % b;
+        a = newa;
+      }
+    return a;
+    }
 
   private void reduce(){
     int x = gcd(numerator, denominator);
@@ -27,14 +18,14 @@ public class RationalNumber extends RealNumber{
   }
 
   public RationalNumber(int nume, int deno){
-   super(0);
-   if (deno == 0) {
-     nume = 0;
-     deno = 1;
-   }
-   numerator = nume;
-   denominator = deno;
-   reduce();
+    super(0.0);
+    if (deno == 0) {
+      nume = 0;
+      deno = 1;
+    }
+    numerator = nume;
+    denominator = deno;
+    reduce();
   }
 
   public double getValue() {
@@ -46,16 +37,16 @@ public class RationalNumber extends RealNumber{
   }
 
   public int getDenominator(){
-   return denominator;
+    return denominator;
   }
 
   public RationalNumber reciprocal(){
-   RationalNumber newReciprocal = new RationalNumber (denominator, numerator);
-   return newReciprocal;
+    RationalNumber newReciprocal = new RationalNumber (getDenominator(), getNumerator());
+    return newReciprocal;
   }
 
   public boolean equals(RationalNumber other){
-   return (this.getNumerator() == other.getNumerator() && this.getDenominator() == other.getDenominator());
+    return (this.getValue() == other.getValue());
   }
 
   public String toString(){
@@ -65,12 +56,16 @@ public class RationalNumber extends RealNumber{
     if (getNumerator() == 0) {
       return "" + getNumerator();
     }
+    if (getNumerator() > 0 && getDenominator() < 0) {
+      return "-" + getNumerator() + "/" + (-1 * getDenominator());
+    }
     return getNumerator() + "/" + getDenominator();
   }
 
 
   public RationalNumber multiply(RationalNumber other){
-    RationalNumber newNumber = new RationalNumber (this.getNumerator() * other.getNumerator(), this.getDenominator() * other.getDenominator());
+    RationalNumber newNumber;
+    newNumber = new RationalNumber (this.getNumerator() * other.getNumerator(), this.getDenominator() * other.getDenominator());
     return newNumber;
   }
 
